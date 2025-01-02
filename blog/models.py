@@ -8,7 +8,7 @@ class Post(models.Model):
         DRAFT = 'DF', 'Draft'
         PUBLISHED = 'PB', 'Published'
 
-    title = models.CharField(max_length=250)
+    titlel = models.CharField(max_length=250)
     slug = models.SlugField(max_length=250, unique=True)
     author = models.ForeignKey(User,
                                on_delete=models.CASCADE,
