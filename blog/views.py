@@ -1,17 +1,27 @@
-from django.shortcuts import render, get_object_or_404
-from .models import Post
+class MagicBank:
+    money = 1000
+    
+    @classmethod
+    def add_money(cls):
+        some = int(input('введи тогда число'))
+        amount = some
+        cls.reduce_money(amount)
+
+    
+    @classmethod
+    def reduce_money(cls, amount):
+        cls.amount = amount
+        if cls.amount > 1000:
+            print('Нельзя тратить больше 1000 за один раз')
+            cls.add_money()
+        else:
+            print(f"Покупка на сумму {amount} осуществлена")
+            
 
 
-def post_list(request):
-    posts = Post.objects.all()
-    return render(request,
-                  'blog/post/list.html',
-                  {'posts': posts})
 
-
-def post_detail(request, id):
-    post = get_object_or_404(Post,
-                             id=id, status=Post.Status.PUBLISHED)
-    return render(request,
-                  'blog/post/detail.html',
-                  {'post': post})
+# код ниже пожалуйста не удаляйте 
+masha = MagicBank()
+masha.reduce_money(100)
+masha.reduce_money(999)
+masha.reduce_money(1000000000)
